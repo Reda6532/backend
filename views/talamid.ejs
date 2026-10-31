@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%=title%></h1>
+    <%if(students.length===0){%>
+    <p>there are no students</p>
+    <%}else{%>
+        <ul>
+            <%students.forEach(s=>{%>
+                <li>
+                    <img src="<%=s.images%>" alt="" width="50">
+                    <%=s.name%>-<%=s.age%>
+                    <%if(s.age>=20){%>
+                        <strong>senior</strong>
+                        <%}%>
+                </li>
+            <%})%>
+        </ul>
+        <%}%>
+</body>
+</html>
