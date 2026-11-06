@@ -1,5 +1,5 @@
-import Admin from "../Model/adminModel";
-import bcrypt from "bcrypto/lib/bcrypt";
+import Admin from "../Model/adminModel.js";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
 async function addAdmin(req,res){
     try {
@@ -11,7 +11,7 @@ async function addAdmin(req,res){
         if(existingadmin){
             return res.status(400).json({message:"cet email existe deja"})
         }
-        const hashpassword=await bcrypt.hash256(password,10)
+        const hashpassword=await bcrypt.hash(password,10)
         const admin =await Admin.create({
             name,email,password:hashpassword
 
@@ -44,7 +44,7 @@ async function login(req,res) {
 
             },
             process.env.JWT_SECRET,
-            {expiresIn:'id'}
+            {expiresIn:'1d'}
         )
         return res.status(200).json({message:"connexion reussie",token,admin})
     } catch (error) {

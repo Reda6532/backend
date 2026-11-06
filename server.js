@@ -1,10 +1,10 @@
 import express from "express"
-import studentRoutes from "./routes/studentRoute.js"
+
 import dotenv from "dotenv"
 import logger from "./middlewares/logger.js"
 import connectDB from "./config/db.js"
-import courseRoute from "./routes/courseRoute.js"
-import teacherRoute from "./routes/teacherRoute.js"
+
+import route from "./routes/routes.js"
 
 dotenv.config()
 const app=express()
@@ -14,9 +14,7 @@ app.use(logger)
 const port=process.env.NUM_PORT
 app.set("view engine", "ejs")
 app.use(express.urlencoded({extended:true}))
-app.use(studentRoutes)
-app.use(courseRoute)
-app.use(teacherRoute)
+app.use(route)
 app.use((req,res)=>{
     res.status(404).json({message:"route not found"})
 
