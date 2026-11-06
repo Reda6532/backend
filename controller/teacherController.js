@@ -29,7 +29,7 @@ async function deleteTeacher(req,res){
 async function getTeacher(req,res){
     try{
         const teacher=await Teacher.find()
-        res.status(200).json(course)
+        res.status(200).json(teacher)
     }catch(error){
         res.status(500).json({message:error.message})
     }
