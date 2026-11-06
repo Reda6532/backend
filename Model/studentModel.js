@@ -15,11 +15,18 @@ const studentSchema=new mongoose.Schema({
             type:String,
             default:null
         },
-        courses:[{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Course",
-            required:true
-        }]
+        courses:{
+            type:[{
+                type: mongoose.Schema.Types.ObjectId,
+                ref:"course"
+            }],
+            required:true,
+            default:undefined,
+            validate:{
+                validator:value=>value.length>0,
+                message:"A student must have at least one course"
+            }
+        }
     },{timestamps:true}
 )
 const student =mongoose.model("student",studentSchema)
