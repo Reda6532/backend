@@ -9,7 +9,7 @@ async function addAdmin(req,res){
         //const password=req.body.password
         const existingadmin=await Admin.findOne({email})
         if(existingadmin){
-            return res.status(400).json({message:"cet email existe deja"})
+            return res.status(409).json({message:"cet email existe deja"})
         }
         const hashpassword=await bcrypt.hash(password,10)
         const admin =await Admin.create({
