@@ -11,7 +11,8 @@ const adminSchema=new mongoose.Schema(
             type:String,
             required:true,
             unique:true,
-            trim:true
+            trim:true,
+            match:/^[a-zA-Z]+[0-9]*@[a-zA-Z]+\.[a-zA-Z]+$/
         },
         password:{
             type:String,
